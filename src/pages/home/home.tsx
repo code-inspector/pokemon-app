@@ -52,7 +52,6 @@ export const Home = () => {
   const [selectedPokemonUrl, setSelectedPokemonUrl] = useState<string>('');
 
   const onCardClick = (url: string) => {
-    console.log('clicked');
     setModal(true);
     setSelectedPokemonUrl(url);
   };
@@ -63,7 +62,7 @@ export const Home = () => {
 
   return (
     <Container>
-      <h1>Pokemon List</h1>
+      <h1 className="m-5 d-flex justify-content-center align-items-center">Pokemon List</h1>
       <Row>
         {pokemonData.map((pokemon, index) => (
           <Col key={index} className="mb-5">
@@ -71,7 +70,7 @@ export const Home = () => {
           </Col>
         ))}
       </Row>
-      <PokemonModal show={modal} onHide={closeModal} selectedPokemonUrl={selectedPokemonUrl}/>
+      <PokemonModal show={modal} onHide={closeModal} selectedPokemonUrl={selectedPokemonUrl} />
     </Container>
   );
 };

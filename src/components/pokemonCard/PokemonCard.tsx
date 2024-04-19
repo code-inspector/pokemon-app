@@ -18,7 +18,7 @@ const PokemonCard = (props: PokemonCardProps) => {
   const imageUrl = mediaApiBaseUrl + `/${number}.png`;
 
   return (
-    <Card style={{ width: '18rem' }} onClick={() => onCardClick(imageUrl)}>
+    <Card className={style.cardStyle} onClick={() => onCardClick(imageUrl)}>
       <Card.Img variant="top" src={imageUrl} />
       <hr />
       <Card.Body>
