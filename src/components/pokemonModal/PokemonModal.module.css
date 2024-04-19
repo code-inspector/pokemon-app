@@ -1,0 +1,10 @@
+.modalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10px;
+}
