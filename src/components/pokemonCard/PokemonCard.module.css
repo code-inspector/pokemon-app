@@ -1,0 +1,8 @@
+.cardTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardStyle {
+  width: 18rem;
+}
