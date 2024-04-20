@@ -1,76 +1,45 @@
 import React, { useState } from 'react';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import PokemonCard from '../../components/pokemonCard/PokemonCard';
-import { Col, Container, Row } from 'react-bootstrap';
 import PokemonModal from '../../components/pokemonModal/PokemonModal';
 
-interface Pokemon {
-  name: string;
-  url: string;
-}
-
-const pokemonData: Pokemon[] = [
-  {
-    name: 'bulbasaur',
-    url: 'https://pokeapi.co/api/v2/pokemon/1/',
-  },
-  {
-    name: 'ivysaur',
-    url: 'https://pokeapi.co/api/v2/pokemon/2/',
-  },
-  {
-    name: 'venusaur',
-    url: 'https://pokeapi.co/api/v2/pokemon/3/',
-  },
-  {
-    name: 'charmander',
-    url: 'https://pokeapi.co/api/v2/pokemon/4/',
-  },
-  {
-    name: 'charmeleon',
-    url: 'https://pokeapi.co/api/v2/pokemon/5/',
-  },
-  {
-    name: 'charizard',
-    url: 'https://pokeapi.co/api/v2/pokemon/6/',
-  },
-  {
-    name: 'squirtle',
-    url: 'https://pokeapi.co/api/v2/pokemon/7/',
-  },
-  {
-    name: 'wartortle',
-    url: 'https://pokeapi.co/api/v2/pokemon/8/',
-  },
-  {
-    name: 'blastoise',
-    url: 'https://pokeapi.co/api/v2/pokemon/9/',
-  },
-];
+import { useFetchPokemonsQuery } from '../../store/api/pokemonApiSlice';
 
 export const Home = () => {
   const [modal, setModal] = useState<boolean>(false);
-  const [selectedPokemonUrl, setSelectedPokemonUrl] = useState<string>('');
+  const [selectedPokemonId, setSelectedPokemonId] = useState<string>('');
+
+  const { data: pokemons, isError, isLoading, error } = useFetchPokemonsQuery();
 
   const onCardClick = (url: string) => {
     setModal(true);
-    setSelectedPokemonUrl(url);
+    setSelectedPokemonId(url);
   };
 
   const closeModal = () => {
     setModal(false);
   };
 
+  if (isLoading)
+    return (
+      <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+        <Spinner animation="border" />
+      </Container>
+    );
+  if (isError) return <Container>Error while fetching data</Container>;
+
   return (
     <Container>
       <h1 className="m-5 d-flex justify-content-center align-items-center">Pokemon List</h1>
       <Row>
-        {pokemonData.map((pokemon, index) => (
-          <Col key={index} className="mb-5">
-            <PokemonCard pokemon={pokemon} index={index + 1} onCardClick={onCardClick} />
-          </Col>
-        ))}
+        {pokemons &&
+          pokemons?.map((pokemon, index) => (
+            <Col key={index} className="mb-5">
+              <PokemonCard pokemon={pokemon} onCardClick={onCardClick} />
+            </Col>
+          ))}
       </Row>
-      <PokemonModal show={modal} onHide={closeModal} selectedPokemonUrl={selectedPokemonUrl} />
+      {modal && <PokemonModal show={modal} onHide={closeModal} id={selectedPokemonId} />}
     </Container>
   );
 };
