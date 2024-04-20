@@ -17,7 +17,7 @@ const PokemonCard = (props: PokemonCardProps) => {
 
   return (
     <Card className={style.card} onClick={() => onCardClick(number)}>
-      <Card.Img variant="top" src={imageUrl} />
+      <Card.Img variant="top" src={imageUrl} alt={name || 'name'} />
       <hr />
       <Card.Body>
         <Card.Title className={style.cardTitle}>{name}</Card.Title>
