@@ -22,7 +22,7 @@ export const Home = () => {
     setSelectedPokemonId('');
   };
 
-  if (isError) return <Container>Error while fetching data</Container>;
+  if (isError) return <Container data-testid="pokemons-error">Error while fetching data</Container>;
 
   return (
     <Container className="py-5">
@@ -31,7 +31,10 @@ export const Home = () => {
       </Row>
       <div>
         {isFetching ? (
-          <Container className={`d-flex justify-content-center align-items-center ${style.loading}`}>
+          <Container
+            className={`d-flex justify-content-center align-items-center ${style.loading}`}
+            data-testid="pokemons-loading"
+          >
             <Spinner animation="border" />
           </Container>
         ) : (
@@ -50,7 +53,7 @@ export const Home = () => {
           </>
         )}
       </div>
-      <PokemonModal onHide={onHide} id={selectedPokemonId} />
+      {selectedPokemonId.length > 0 && <PokemonModal onHide={onHide} id={selectedPokemonId} />}
     </Container>
   );
 };

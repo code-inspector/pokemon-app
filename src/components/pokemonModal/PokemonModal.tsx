@@ -20,18 +20,16 @@ const PokemonModal = ({ onHide, id }: PokemonModalProps) => {
 
   return (
     <Modal show={!!id} onHide={onHide} aria-labelledby="contained-modal-title-vcenter" centered>
-      <Modal.Header closeButton>
-        <Modal.Title>{pokemon?.name}</Modal.Title>
-      </Modal.Header>
+      <Modal.Header closeButton />
       {isFetching && (
         <Container className={`d-flex justify-content-center align-items-center ${style.loading}`}>
-          <Spinner animation="border" />
+          <Spinner animation="border" data-testid="pokemon-loading" />
         </Container>
       )}
       {pokemon && !isFetching && (
         <>
           <div className="d-flex justify-content-center align-items-center">
-            <img src={pokemon?.sprites?.front_default} alt="Pokemon" className="w-50" />
+            <img src={pokemon?.sprites?.front_default} alt={pokemon?.name || 'pokemon'} className="w-50" />
           </div>
 
           <span className="m-4 d-flex justify-content-between">
@@ -56,7 +54,10 @@ const PokemonModal = ({ onHide, id }: PokemonModalProps) => {
         </>
       )}
       {isError && !isFetching && (
-        <Container className={`d-flex justify-content-center align-items-center ${style.loading}`}>
+        <Container
+          className={`d-flex justify-content-center align-items-center ${style.loading}`}
+          data-testid="pokemon-error"
+        >
           Unable to fetch details
         </Container>
       )}
