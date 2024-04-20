@@ -18,8 +18,6 @@ const PokemonModal = ({ onHide, id }: PokemonModalProps) => {
     skip: !id,
   });
 
-  if (isError) return <Container>Error</Container>;
-
   return (
     <Modal show={!!id} onHide={onHide} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
