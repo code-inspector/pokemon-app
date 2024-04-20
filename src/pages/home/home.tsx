@@ -53,7 +53,7 @@ export const Home = () => {
           </>
         )}
       </div>
-      {selectedPokemonId.length > 0 && <PokemonModal onHide={onHide} id={selectedPokemonId} />}
+      <PokemonModal onHide={onHide} id={selectedPokemonId} />
     </Container>
   );
 };
