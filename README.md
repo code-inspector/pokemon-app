@@ -10,6 +10,8 @@ This project is react app using redux toolkit and RTKquery to fetch data from en
 
 ## Demo
 
+![](https://github.com/code-inspector/pokemon-app/Demo.gif)
+
 ## Local Setup
 
 - `nvm use` to use the required node version.
