@@ -10,7 +10,8 @@ This project is react app using redux toolkit and RTKquery to fetch data from en
 
 ## Demo
 
-![](https://raw.githubusercontent.com/code-inspector/pokemon-app/main/Demo.gif)
+https://github.com/code-inspector/pokemon-app/assets/44415437/7ba754f6-3df8-4f90-a20c-1fee317844f6
+
 
 ## Local Setup
 
