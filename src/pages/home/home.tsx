@@ -32,11 +32,13 @@ export const Home = () => {
 
   return (
     <Container>
-      <h1 className="m-5 d-flex justify-content-center align-items-center">Pokemon List</h1>
-      <Row>
+      <Row className="m-5">
+        <h1 className="d-flex justify-content-center align-items-center">Pokemon List</h1>
+      </Row>
+      <Row className="d-flex justify-content-center align-items-center">
         {pokemons &&
           pokemons?.map((pokemon, index) => (
-            <Col key={index} className="mb-5">
+            <Col xs={10} md={6} lg={4} xl={3} key={index} className="mb-5">
               <PokemonCard pokemon={pokemon} onCardClick={onCardClick} />
             </Col>
           ))}
