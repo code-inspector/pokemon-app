@@ -25,8 +25,8 @@ export const Home = () => {
   if (isError) return <Container>Error while fetching data</Container>;
 
   return (
-    <Container>
-      <Row className="m-5">
+    <Container className="py-5">
+      <Row className="mb-5">
         <h1 className="d-flex justify-content-center align-items-center">Pokemon List</h1>
       </Row>
       <div>
