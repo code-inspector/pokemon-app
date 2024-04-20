@@ -5,12 +5,11 @@ import style from './PokemonModal.module.css';
 import { useFetchPokemonByIdQuery } from '../../store/api/pokemonApiSlice';
 
 interface PokemonModalProps {
-  show: boolean;
   onHide: () => void;
   id: string;
 }
 
-const PokemonModal = ({ show, onHide, id }: PokemonModalProps) => {
+const PokemonModal = ({ onHide, id }: PokemonModalProps) => {
   const {
     data: pokemon,
     isLoading,
@@ -25,15 +24,20 @@ const PokemonModal = ({ show, onHide, id }: PokemonModalProps) => {
         <Spinner animation="border" />
       </Container>
     );
-  if (isError || !pokemon) return <Container>Error</Container>;
+  if (isError) return <Container>Error</Container>;
 
   return (
-    <Modal show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal
+      show={!!id && !!pokemon && !isLoading}
+      onHide={onHide}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
       <Modal.Header closeButton>
         <Modal.Title>{pokemon?.name}</Modal.Title>
       </Modal.Header>
       <div className="d-flex justify-content-center align-items-center">
-        <img src={pokemon.sprites.front_default} alt="Pokemon" className="w-50" />
+        <img src={pokemon?.sprites?.front_default} alt="Pokemon" className="w-50" />
       </div>
 
       <span className="m-4 d-flex justify-content-between">
