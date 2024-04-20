@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Spinner } from 'react-bootstrap';
+
+import style from './home.module.css';
+
 import PokemonCard from '../../components/pokemonCard/PokemonCard';
 import PokemonModal from '../../components/pokemonModal/PokemonModal';
-
 import { useFetchPokemonsQuery } from '../../store/api/pokemonApiSlice';
 
 export const Home = () => {
@@ -22,7 +24,7 @@ export const Home = () => {
 
   if (isLoading)
     return (
-      <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+      <Container className={`d-flex justify-content-center align-items-center ${style.loading}`}>
         <Spinner animation="border" />
       </Container>
     );

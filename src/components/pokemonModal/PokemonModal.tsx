@@ -21,7 +21,7 @@ const PokemonModal = ({ show, onHide, id }: PokemonModalProps) => {
 
   if (isLoading)
     return (
-      <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+      <Container className={`d-flex justify-content-center align-items-center ${style.loading}`}>
         <Spinner animation="border" />
       </Container>
     );
@@ -30,7 +30,7 @@ const PokemonModal = ({ show, onHide, id }: PokemonModalProps) => {
   return (
     <Modal show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
-        <Modal.Title>{pokemon.name}</Modal.Title>
+        <Modal.Title>{pokemon?.name}</Modal.Title>
       </Modal.Header>
       <div className="d-flex justify-content-center align-items-center">
         <img src={pokemon.sprites.front_default} alt="Pokemon" className="w-50" />
@@ -38,22 +38,22 @@ const PokemonModal = ({ show, onHide, id }: PokemonModalProps) => {
 
       <span className="m-4 d-flex justify-content-between">
         <span className={style.title}>Name:</span>
-        <span>{pokemon.name}</span>
+        <span>{pokemon?.name}</span>
       </span>
       <hr />
       <span className="m-4 d-flex justify-content-between">
         <span className={style.title}>Height:</span>
-        <span>{pokemon.height}</span>
+        <span>{pokemon?.height}</span>
       </span>
       <hr />
       <span className="m-4 d-flex justify-content-between">
         <span className={style.title}>Weight:</span>
-        <span>{pokemon.weight}</span>
+        <span>{pokemon?.weight}</span>
       </span>
       <hr />
       <span className="m-4 d-flex justify-content-between">
         <span className={style.title}>Types:</span>
-        <span>{pokemon.types.join(', ')}</span>
+        <span>{pokemon?.types?.join(', ')}</span>
       </span>
     </Modal>
   );

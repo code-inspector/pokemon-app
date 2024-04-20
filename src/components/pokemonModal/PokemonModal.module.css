@@ -8,3 +8,6 @@
   font-weight: bold;
   margin-right: 10px;
 }
+.loading {
+  height: '100vh';
+}
